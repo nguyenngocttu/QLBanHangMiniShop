@@ -1,0 +1,50 @@
+﻿@model ChungLoai
+@if (ViewBag.CRUD == "delete")
+{
+    <tr id="chungloai-@Model.ID">
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => Model.Ten)
+        </td>
+        <td style="border:2px solid black">
+            <a class="btn btn-primary"
+               name="LoadPopUp"
+               id="/ChungLoais/Details/@Model.ID">
+                Details
+            </a>
+            <a class="btn btn-warning"
+               name="LoadPopUp"
+               id="/ChungLoais/Edit/@Model.ID">
+                Edit
+            </a>
+            <a class="btn btn-danger"
+               name="LoadPopUp"
+               id="/ChungLoais/Delete/@Model.ID">
+                Delete
+            </a>
+        </td>
+    </tr>
+}
+@if (ViewBag.CRUD == "edit")
+{
+    <td style="border:2px solid black">
+        @Html.DisplayFor(modelItem => Model.Ten)
+    </td>
+    <td style="border:2px solid black">
+        <a class="btn btn-primary"
+           name="LoadPopUp"
+           id="/ChungLoais/Details/@Model.ID">
+            Details
+        </a>
+        <a class="btn btn-warning"
+           name="LoadPopUp">
+
+            Edit
+        </a>
+        <a class="btn btn-danger"
+           name="LoadPopUp">
+            Delete
+        </a>
+    </td>
+}
+@*  *@
+

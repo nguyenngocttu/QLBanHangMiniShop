@@ -1,0 +1,20 @@
+﻿@model System.String
+
+<!-- SEARCH FORM -->
+@using (Ajax.BeginForm("../"+@Url.Action("Search", Model),new { }, new AjaxOptions
+{
+    UpdateTargetId = "tableBody",
+    InsertionMode = InsertionMode.Replace,
+},new { @class= "form-inline ml-3" }))
+{
+    <div class="input-group input-group-sm">
+        <input name="value" id="inputValue1" class="form-control form-control-navbar" type="search" placeholder="tìm kiếm @Model" aria-label="Search">
+        <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+}
+@*<form class="form-inline ml-3" action="@Url.Action("Search",Model)" method="get">
+</form>*@

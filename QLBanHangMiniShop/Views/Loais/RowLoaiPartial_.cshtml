@@ -1,0 +1,61 @@
+﻿
+@model Loai
+@if (ViewBag.CRUD=="delete")
+{
+    <tr style="border:0.2em solid black" id="loai-@Model.ID">
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => Model.MaSo)
+        </td>
+        <td style="border:2px solid black">
+            <a href="#" name="LoadPopUp"
+               id="/Loais/Details/@Model.ID">
+                @Html.DisplayFor(modelItem => Model.Ten)
+            </a>
+        </td>
+        <td style="border:2px solid black">
+            @ViewBag.TenChungLoai
+        </td>
+        <td style="border:2px solid black">
+            <a class="btn btn-warning"
+               name="LoadPopUp"
+               id="/Loais/Edit/@Model.ID">
+                Edit
+            </a>
+            <a class="btn btn-danger"
+               name="LoadPopUp"
+               id="/Loais/Delete/@Model.ID">
+                Delete
+            </a>
+        </td>
+    </tr>
+}
+@if (ViewBag.CRUD == "edit")
+{
+    <td style="border:2px solid black">
+        @Html.DisplayFor(modelItem => Model.MaSo)
+    </td>
+    <td style="border:2px solid black">
+        <a href="#" name="LoadPopUp"
+           id="/Loais/Details/@Model.ID">
+            @Html.DisplayFor(modelItem => Model.Ten)
+        </a>
+
+    </td>
+    <td style="border:2px solid black">
+        @ViewBag.TenChungLoai
+    </td>
+    <td style="border:2px solid black">
+        <a class="btn btn-warning"
+           name="LoadPopUp"
+           id="/Loais/Edit/@Model.ID">
+            Edit
+        </a>
+        <a class="btn btn-danger"
+           name="LoadPopUp"
+           id="/Loais/Delete/@Model.ID">
+            Delete
+        </a>
+    </td>
+}
+
+

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<HangHoa>
+@foreach (var item in Model)
+{
+    <tr style="border:0.2em solid black" id="sp-@item.ID">
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => item.MaSo)
+        </td>
+        <td>@item.Loai.Ten</td>
+        <td style="border:2px solid black">
+            <a href="#" name="LoadPopUp"
+               id="/SanPhams/Details/@item.ID">
+                @Html.DisplayFor(modelItem => item.Ten)
+            </a>
+        </td>
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => item.GiaBan)
+        </td>
+        <td style="border:2px solid black">
+            <a class="btn btn-warning"
+               name="LoadPopUp"
+               id="/SanPhams/Edit/@item.ID">
+                Edit
+            </a>
+            <a class="btn btn-danger"
+               name="LoadPopUp"
+               id="/SanPhams/Delete/@item.ID">
+                Delete
+            </a>
+        </td>
+    </tr>
+}

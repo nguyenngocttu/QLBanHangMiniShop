@@ -1,0 +1,94 @@
+﻿@model QLBanHangMiniShop.Models.HoaDon
+
+<div class="card card-primary">
+    <div class="card-header" style="background-color:#0094ff">
+        <h4 style="width:80%; float:left">@ViewBag.Title Thông tin đơn hàng</h4>
+        <div style="float:right">
+            <button class="closePopUp btn btn-danger"
+                    style="color:white"
+                    onclick="ClosePopUp()">
+                X
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+
+        <ul class="nav nav-tabs" style="margin-bottom:8px">
+            <li style="margin:0px"><a class="btn btn-outline-dark active" data-toggle="tab" href="#main_">Thông tin sản phẩm</a></li>
+            <li style="margin:0px"><a data-toggle="tab" class="btn btn-outline-dark" href="#menu1">Danh sách sản phẩm</a></listyle="margin:0px>
+
+        </ul>
+        <div class="tab-content">
+            <div id="main_" class="tab-pane fade active show" style="color:black !important;margin-top:5px">
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NgayDatHang)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.NgayDatHang)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.HoTenKhach)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.HoTenKhach)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DiaChi)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.DiaChi)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DienThoai)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DienThoai)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.TongTien)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TongTien)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.TrangThai)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TrangThai)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+            <div id="menu1" class="tab-pane fade" style="color:black !important">
+                danh sách sản phẩm<br/>
+                
+                @foreach (var item in Model.HoaDonChiTiets)
+                {
+                    <text>@item.HangHoa.Ten-        @item.HangHoa.GiaBan đ</text><br />
+                }
+            </div>
+            <div id="menu2" class="tab-pane fade" style="color:black !important">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

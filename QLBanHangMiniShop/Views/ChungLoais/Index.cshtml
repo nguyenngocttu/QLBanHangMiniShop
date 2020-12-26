@@ -1,0 +1,36 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout/AdminLayout_.cshtml";
+}
+
+
+<h2>Danh sách nhóm sản phẩm</h2>
+
+
+
+<p>
+    <button class="btn btn-success"
+            id="/ChungLoais/Create"
+            name="LoadPopUp">
+        +Thêm mới
+    </button>
+
+</p>
+<table class="table">
+    <tr id="tableHeader">
+        <th>
+            Tên nhóm sản phẩm
+            @*@Html.DisplayNameFor(model => model.Ten)*@
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="tableBody">
+        @Html.Action("DanhSachChungLoai")
+    </tbody>
+</table>
+<div id="DivListPage">
+    @Html.Action("ListPage")
+</div>
+

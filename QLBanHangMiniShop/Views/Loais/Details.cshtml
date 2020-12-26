@@ -1,0 +1,58 @@
+﻿@model QLBanHangMiniShop.Models.Loai
+
+
+
+<div class="card card-primary">
+    <div class="card-header" style="background-color:#0094ff">
+        <h2 class="card-title">@ViewBag.Title</h2>
+        <div style="float:right">
+            <button class="closePopUp btn btn-danger"
+                    style="color:white"
+                    onclick="ClosePopUp()">
+                X
+            </button>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.MaSo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaSo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ten)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Ten)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ChungLoai.Ten)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ChungLoai.Ten)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            <button class="btn btn-success"
+                    onclick="OpenPopUp('/Loais/Edit/'+@Model.ID)">
+                Edit
+            </button>
+        </p>
+
+    </div>
+</div>
+
+
+

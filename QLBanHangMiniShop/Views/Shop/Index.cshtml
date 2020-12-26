@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeLayout/_IndexLayout.cshtml";
+}
+   
+
+
+        <section class="ftco-section bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-lg-10 order-md-last">
+                        <div class="row" id="contentList">
+                        <div>@ViewBag.ChungLoai-@ViewBag.SoLuong</div>
+                            @Html.Action("DanhSachSanPham")
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col text-center">
+                                <div class="block-27">
+                                    @Html.Action("PageIndex")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.Action("DanhMucSP")
+                </div>
+            </div>
+        </section>
+
+
+
+

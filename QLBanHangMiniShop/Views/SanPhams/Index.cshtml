@@ -1,0 +1,39 @@
+﻿@model IEnumerable<QLBanHangMiniShop.Models.HangHoa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout/AdminLayout_.cshtml";
+}
+    <script src="~/Scripts/SanPham_Create.js"></script>
+<h2>Danh Sách Sản Phẩm</h2>
+<p class="d-print-none">
+    <button class="btn btn-success"
+            id="/SanPhams/Create"
+            name="LoadPopUp">
+        +Thêm mới
+    </button>
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSo)
+        </th>
+        <th>Loại Sản phẩm</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.GiaBan)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="tableBody">
+        @Html.Action("DanhSachSanPham")
+    </tbody>
+</table>
+<div id="DivListPage" class="d-print-none">
+    @Html.Action("ListPage", new { key = "null" })
+</div>
+

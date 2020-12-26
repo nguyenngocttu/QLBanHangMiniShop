@@ -1,0 +1,76 @@
+﻿@model IEnumerable<QLBanHangMiniShop.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Đơn đặt hàng";
+    Layout = "~/Views/Shared/AdminLayout/AdminLayout_.cshtml";
+}
+<h2>Danh sách đơn hàng</h2>
+<p>
+    
+        @Ajax.ActionLink("Chưa xác nhận", "DanhSachDonHang"
+        , new { @trangThai = 1, @indexPage = 1 }
+        , new AjaxOptions
+        {
+
+            HttpMethod = "POST",
+            UpdateTargetId = "tableBody",
+            InsertionMode = InsertionMode.Replace,
+            OnSuccess = "UpdateListPage(\"../HoaDons/ListPage/?trangThai=1\",\"updateListPage\")"
+        },new { @class = "btn btn-default" })
+   
+    
+        @Ajax.ActionLink("Đã xác nhận", "DanhSachDonHang"
+       , new { @trangThai = 2, @indexPage = 1 }
+       , new AjaxOptions
+       {
+
+           HttpMethod = "POST",
+           UpdateTargetId = "tableBody",
+           InsertionMode = InsertionMode.Replace,
+           OnSuccess = "UpdateListPage(\"../HoaDons/ListPage/?trangThai=2\",\"updateListPage\")"
+       }, new { @class = "btn btn-primary" })
+    
+    
+        @Ajax.ActionLink("Hoàn thành", "DanhSachDonHang/"
+   , new { @trangThai = 3, @indexPage = 1 }
+   , new AjaxOptions
+   {
+
+       HttpMethod = "POST",
+       UpdateTargetId = "tableBody",
+       InsertionMode = InsertionMode.Replace,
+       OnSuccess = "UpdateListPage(\"../HoaDons/ListPage/?trangThai=3\",\"updateListPage\")"
+   },new { @class="btn btn-success"})
+   
+        
+
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTenKhach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TongTien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="tableBody">
+        @Html.Action("DanhSachDonHang",new { @trangthai=0})
+    </tbody>
+</table>
+
+<div id="DivListPage">
+    @Html.Action("ListPage",new { @trangThai=0})
+</div>
+

@@ -1,0 +1,84 @@
+﻿@*<link href="~/Content/css/style.css" rel="stylesheet" />*@
+<input type="hidden" id="sluong" value="3" />
+<style>
+    li {
+        list-style: none;
+      
+        margin: 5px;
+        cursor: pointer;
+        display:inline-block
+    }
+    #ulPage>.active {
+               
+        color: red;
+    }
+    .listPage {      
+      
+        cursor: pointer;
+        display:inline;
+    }
+</style>
+<input type="hidden" id="ActionName" value=@ViewBag.ActionName />
+<input type="hidden" id="TotalPage" value=@ViewBag.TotalPage />
+<ul style="text-align:center; margin-top:2%" id="ulPage">
+    <li>
+        <h2 href="#" id="backListPage"  style="font-size:50px" hidden onclick="BackPage()">
+            <
+        </h2>
+    </li>
+    <li  style="font-size:50px" class="active" id="li_1">       
+        <span href="#" id="index_1" class="listPage" value="1" name="pageActive">
+            1
+        </span>
+    </li>
+    @for (int item = 2; item <= 5; item++)
+    {
+        if (item <= ViewBag.TotalPage)
+        {
+            <li  style="font-size:50px" id="li_@item" >
+                <span href="#" id="index_@item" class="listPage" value="@item">
+                    @item
+                </span>
+            </li>
+            if (item == 5)
+            {
+                if (item < ViewBag.TotalPage)
+                {
+                    <li>
+                        <span href="#" id="nextListPage" value="6" style="font-size:50px" onclick="NextPage()">
+                            >
+                        </span>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <span href="#" id="nextListPage" value="" style="font-size:50px" hidden onclick="NextPage()" >
+                            >
+                        </span>
+                    </li>
+                }
+            }
+        }
+        else
+        {
+            <li id="" value= style="font-size:50px" hidden>
+                <span href="#" id="" value=""  class="listPage">
+
+                </span>
+            </li>
+            {
+                if (item ==5)
+                {
+<li>
+    <span href="#" id="nextListPage" value="6" style="font-size:50px" hidden onclick="NextPage">
+        >
+    </span>
+</li>
+                }
+            }
+        }
+    }
+
+</ul>
+    

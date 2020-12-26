@@ -1,0 +1,61 @@
+﻿@*<link href="~/Content/css/style.css" rel="stylesheet" />*@
+<input type="hidden" id="sluong" value="3" />
+@if (ViewBag.CountPage != 0)
+{
+    <ul>
+        @if (ViewBag.firstIndex != 1)
+        {
+            <li id="backListPageBtn">
+                <a href="#"><</a>
+            </li>
+        }
+        @if (ViewBag.lastIndex == 0)
+        {
+
+        }
+        else
+        {
+            for (int item = ViewBag.firstIndex; item <= ViewBag.lastIndex; item++)
+            {
+                if (item == ViewBag.PageActive)
+                {
+                    <li id="indexl_@item" value=@item class="active">
+                        <a href="#" id="index_@item" class="indexList" value="@item" name="pageActive">
+                            @item
+                        </a>
+
+                    </li>
+                }
+                else
+                {
+                    <li id="indexl_@item" value=@item>
+                        <a href="#" id="index_@item" class="indexList" value="@item">
+                            @item
+                        </a>
+                                            
+                    </li>
+                }
+            }
+        }
+        @if (ViewBag.lastIndex < ViewBag.lastPage)
+        {
+            <li>
+                <a href="#" id="nextListPage">
+                    >
+                </a>
+                <input name="lastIndex" value="@ViewBag.lastIndex" type="hidden" />
+            </li>
+        }
+        else
+        {
+            <li>
+
+                <input name="lastIndex" value="@ViewBag.lastIndex" type="hidden" />
+
+            </li>
+        }
+    </ul>
+}
+else
+{
+}

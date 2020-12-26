@@ -1,0 +1,29 @@
+﻿
+@model  IEnumerable<QLBanHangMiniShop.Models.ChungLoai>
+@foreach (var item in Model)
+{
+    <tr style="border:0.2em solid black" id="chungloai-@item.ID">
+
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => item.Ten)
+        </td>
+        <td>
+            <a class="btn btn-primary"
+               name="LoadPopUp"
+               id="/ChungLoais/Details/@item.ID">
+                Details
+            </a>
+            <a class="btn btn-warning"
+               name="LoadPopUp"
+               id="/ChungLoais/Edit/@item.ID">
+
+                Edit
+            </a>
+            <a class="btn btn-danger"
+               name="LoadPopUp"
+               id="/ChungLoais/Delete/@item.ID">
+                Delete
+            </a>
+        </td>
+    </tr>
+}

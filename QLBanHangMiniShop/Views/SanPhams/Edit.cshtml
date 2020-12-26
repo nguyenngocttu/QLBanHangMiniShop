@@ -1,0 +1,278 @@
+﻿@model QLBanHangMiniShop.Models.HangHoa
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: 9 auto auto;
+            grid-gap: 0px;
+            background-color: #2196F3;
+            padding: 10px;
+        }
+
+        .item {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 30px;
+        }
+
+            .item:hover {
+                cursor: pointer;
+            }
+    </style>
+    <div class="card card-primary">
+        <div class="card-header" style="background-color:#0094ff">
+            <h2 class="card-title">@ViewBag.Title</h2>
+            <div style="float:right">
+                <button class="closePopUp btn btn-danger"
+                        style="color:white"
+                        onclick="ClosePopUp()">
+                    X
+                </button>
+            </div>
+        </div>
+        <ul class="nav nav-tabs" style="margin-bottom:10px">
+            <li style="margin:0px"><a class="btn btn-outline-dark active" data-toggle="tab" href="#main_">Thông tin sản phẩm</a></li>
+            <li style="margin:0px"><a data-toggle="tab" class="btn btn-outline-dark" href="#menu1">Hình ảnh</a></listyle="margin:0px>
+            <li style="margin:0px"><a data-toggle="tab" class="btn btn-outline-dark" href="#menu2">Thông số kỹ thuật</a></li>
+            <li style="margin:0px"><a data-toggle="tab" class="btn btn-outline-dark" href="#menu3">Mô tả</a></li>
+        </ul>
+        <div class="card-body">
+            @using (Ajax.BeginForm("Edit", new {  },new AjaxOptions
+            {
+                HttpMethod = "Post",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "sp-" + Model.ID,
+                OnSuccess = "ClosePopUp"
+            }, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="tab-content">
+                    <div id="main_" class="tab-pane fade active show" style="color:black !important;margin-top:5px">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MaSo, htmlAttributes: new { @class = "control-label " })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MaSo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MaSo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label " })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DonViTinh, htmlAttributes: new { @class = "control-label " })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.DonViTinh, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DonViTinh, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.GiaBan, htmlAttributes: new { @class = "control-label " })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.LoaiID, "LoaiID", htmlAttributes: new { @class = "control-label " })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("LoaiID", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.LoaiID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade " style="color:black !important">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Hình ảnh sản phẩm</label>
+                            <div class="input-group" id="ImgControl">
+                                @{
+                                    int number = 1;
+                                }
+                                @foreach (var item in Model.TenHinh.Split(','))
+                                {
+                                    string idfile = "file" + number;
+                                    string classfile = "js-file-image" + number;
+                                    <div class="col-3" style=" max-height:175px;max-width:175px">
+                                        <label for=@idfile id="image_@number">
+                                            <img src="~/Photos/@item" class="img-thumbnail @classfile" style="width: 172px; height: 172px; max-height: 175px">
+                                        </label>
+                                    </div>
+                                    number++;
+                                }
+
+                                <div class="col-3" style=" max-height:175px;max-width:175px">
+                                    @{ string forFile = "file" + number;}
+                                    <label class="grid-container" style="border:1px solid black;font-size:30px" for=@forFile id="image_@number">
+                                        <i class="item"></i>
+                                        <i class="fas fa-plus item"></i>
+                                        <i class="item"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <input type="file" accept="image/*" class="custom-file-input" id="file1" name="file1" style="display:none" onchange="ChangeIMG(1)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file2" name="file2" style="display:none" onchange="ChangeIMG(2)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file3" name="file3" style="display:none" onchange="ChangeIMG(3)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file4" name="file4" style="display:none" onchange="ChangeIMG(4)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file5" name="file5" style="display:none" onchange="ChangeIMG(5)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file6" name="file6" style="display:none" onchange="ChangeIMG(6)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file7" name="file7" style="display:none" onchange="ChangeIMG(7)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file8" name="file8" style="display:none" onchange="ChangeIMG(8)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file9" name="file9" style="display:none" onchange="ChangeIMG(9)">
+                            <input type="file" accept="image/*" class="custom-file-input" id="file10" name="file10" style="display:none" onchange="ChangeIMG(10)">
+
+
+                        </div>
+                        </div>
+                    <div id="menu2" class="tab-pane fade" style="color:black !important">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ThongSoKyThuat, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.ThongSoKyThuat, new
+                                {
+                                    @class = "form-control",
+                                    cols = "100",
+                                    @rows = "5"
+                               ,
+                                    placeholder = @"-
+    -
+    -
+    -
+    "
+                                })
+                                @Html.ValidationMessageFor(model => model.ThongSoKyThuat, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu3" class="tab-pane fade" style="color:black !important">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.MoTa, new
+                                {
+                                    @class = "form-control",
+                                    cols = "100",
+                                    @rows = "5"
+                                                          ,
+                                    placeholder = @"Mô tả sản phẩm ngắn gọn"
+                                })                            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
+                #region
+                @*<div class="form-horizontal">
+                <h4>HangHoa</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MaSo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MaSo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MaSo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DonViTinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DonViTinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DonViTinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ThongSoKyThuat, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ThongSoKyThuat, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ThongSoKyThuat, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TenHinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenHinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenHinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GiaBan, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LoaiID, "LoaiID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("LoaiID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LoaiID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NgayTao, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NgayTao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgayTao, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NgayCapNhat, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NgayCapNhat, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgayCapNhat, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>*@
+                #endregion
+            }
+        </div>
+    </div>
+
+
+       
+
+        

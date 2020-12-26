@@ -1,0 +1,92 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/HomeLayout/_IndexLayout.cshtml";
+}
+@model IEnumerable<QLBanHangMiniShop.Controllers.CartsController.ItemCart>
+<script src="~/Scripts/Cart.js"></script>
+<script src="~/Scripts/Admin.js"></script>
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th><span class="btn btn-danger" onclick="window.history.back()">back</span></th>
+                                <th>&nbsp;</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="text-center" id="itemCart_@item.id">
+                                    <td class="product-remove"><a href="#"><span class="ion-ios-close" onclick=RemoveItem('/Carts/RemoveItemCart/@item.id','@item.id')></span></a></td>
+                                    <td class="image-prod">
+                                        <div class="img" style="background-image:url(../Photos/@item.hinhDaiDien);"></div>
+                                    </td>
+                                    <td class="product-name">
+                                        <h3>@item.tenSanPham</h3>
+                                        @*<p>Far far away, behind the word mountains, far from the countries</p>*@<p></p>
+                                    </td>
+                                    <td class="price">@item.gia</td>
+                                    <td class="quantity">
+                                        <div class="input-group mb-3">
+                                            <input type="text" name="quantity"
+                                                   class="quantity form-control input-number"
+                                                   value="@item.soLuong" min="1" max="100">
+                                        </div>
+                                    </td>
+                                    <td class="total">@item.tongGia</td>
+                                </tr><!-- END TR-->
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col col-lg-5 col-md-6 mt-5 cart-wrap">
+                <div class="cart-total mb-3">
+                    <h3>Cart Totals</h3>
+                    <p class="d-flex">
+                        <span>Subtotal</span>
+                        <span>@ViewBag.Subtotal</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Discount</span>
+                        <span>@ViewBag.Discount %</span>
+                    </p>
+                    <hr>
+                    <p class="d-flex total-price">
+                        <span>Total</span>
+                        <span>@ViewBag.Total</span>
+                    </p>
+                </div>
+                <p class="text-center">
+                    <a class="btn btn-primary py-3 px-4" onclick="OpenPopUp('../Carts/CreateBill')">
+                        Proceed to
+                        Checkout
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="myModal" class="modal fade bs-example-modal-lg"
+     tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-modal="true">
+    <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content" id="modal-content-main" style="margin:2% 10% 0px 10%">
+            <!--PartialView-->
+        </div>
+    </div>
+</div>
+<div class="" id="backgroud-Popup"></div>
+

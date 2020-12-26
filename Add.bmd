@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<map name="Add" document_type="Blumind" editor_version="1.3.21.1">
+  <!--Create by Blumind, you can download it free from http://www.blumind.org/download-->
+  <info>
+    <author>ngoct</author>
+    <company>
+    </company>
+    <version>1.0</version>
+  </info>
+  <layout>MIND_MAP</layout>
+  <attributes>
+    <item name="editor_show_sidebar">True</item>
+  </attributes>
+  <style>
+    <back_color>White</back_color>
+    <fore_color>Black</fore_color>
+    <line_color>LightSlateGray</line_color>
+    <border_color>SlateGray</border_color>
+    <node_back_color>LightGray</node_back_color>
+    <node_fore_color>Black</node_fore_color>
+    <select_color>RoyalBlue</select_color>
+    <hover_color>MediumSlateBlue</hover_color>
+    <link_line_color>Green</link_line_color>
+  </style>
+  <nodes>
+    <node text="CRUD ">
+      <style>
+        <back_color>Silver</back_color>
+        <fore_color>Black</fore_color>
+        <border_color>Black</border_color>
+        <padding>12</padding>
+      </style>
+      <widgets>
+        <widget type="PICTURE" align="Left" hyperlink=""><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACRSURBVDhP7ZMhDgIwDEV7p52Da0xischZZK/QK0xgkL1C5c7xaQsYgliDwPCSL7bk/axJR1WYGeg987zaJ2Qzg4jAvEBb2y8xIQAPWVUxxtgveMlYR0Ap5TmnT7Exxrsc58hXspzoL3/idzLY93opbhcvqcrBOh+yAFdOqSQHzfc55HyJpyQHURBhj/bC70qI7qd/EfSmIOZAAAAAAElFTkSuQmCC]]></widget>
+      </widgets>
+      <nodes>
+        <node text="Post dữ liệu về ">
+          <nodes>
+            <node text="Nhận dữ liệu về" />
+            <node text="update lên view" />
+          </nodes>
+        </node>
+      </nodes>
+    </node>
+  </nodes>
+</map>

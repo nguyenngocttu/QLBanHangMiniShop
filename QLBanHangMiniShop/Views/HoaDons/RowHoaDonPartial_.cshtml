@@ -1,0 +1,80 @@
+﻿
+@model HoaDon
+@if (ViewBag.CRUD == "delete")
+{
+    <tr style="border:0.2em solid black" id="hoadon-@Model.ID">
+
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => Model.HoTenKhach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DienThoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TongTien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TrangThai)
+        </td>
+        <td>
+            <a class="btn btn-primary"
+               name="LoadPopUp"
+               id="/HoaDons/Details/@Model.ID">
+                Details
+            </a>
+            <a class="btn btn-warning"
+               name="LoadPopUp"
+               id="/HoaDons/Edit/@Model.ID">
+                Edit
+            </a>
+            <a class="btn btn-danger"
+               name="LoadPopUp"
+               id="/HoaDons/Delete/@Model.ID">
+                Delete
+            </a>
+        </td>
+    </tr>
+}
+@if (ViewBag.CRUD == "edit")
+{
+    <td style="border:2px solid black">
+        @Html.DisplayFor(modelItem => Model.HoTenKhach)
+    </td>
+    <td style="border:2px solid black">
+        @Html.DisplayFor(modelItem => Model.DiaChi)
+    </td>
+    <td style="border:2px solid black">
+        @Html.DisplayFor(modelItem => Model.DienThoai)
+    </td>
+    <td style="border:2px solid black">
+        @Html.DisplayFor(modelItem => Model.TongTien)
+    </td>
+    <td style="border:2px solid black">
+        @Html.DisplayFor(modelItem => Model.TrangThai)
+    </td>
+    <td style="border:2px solid black">
+        <a class="btn btn-primary"
+           name="LoadPopUp"
+           id="/HoaDons/Details/@Model.ID">
+            Details
+        </a>
+        @if (Model.TrangThai != "Hoàn thành")
+        {
+            <a class="btn btn-warning"
+               name="LoadPopUp"
+               id="/HoaDons/Edit/@Model.ID">
+                Kiểm duyệt
+            </a>
+            <a class="btn btn-danger"
+               name="LoadPopUp"
+               id="/HoaDons/Delete/@Model.ID">
+                Delete/Spam
+            </a>
+        }
+    </td>
+}
+@*  *@
+

@@ -1,0 +1,82 @@
+﻿<input id="CountCatalog" value="@ViewBag.CountCatalog" type="hidden" />
+
+
+<div class="col-md-4 col-lg-2">
+    <div class="sidebar">
+        <div class="sidebar-box-2">
+            <h2 class="heading">Categories</h2>
+            <div class="fancy-collapse-panel">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    @{int s = 0;}
+                    @foreach (ChungLoai item in ViewBag.Catalog)
+                    {
+                        s++;
+                        string heading = "heading" + item.ID;
+                        string collapse = "collapse" + item.ID;
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id=@heading>
+                                <h4 class="panel-title">
+                                    <!--Lưu ý: ko có gài css class collapsed-->
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#@collapse"
+                                       aria-expanded="false" aria-controls="@collapse" class="collapsed" id="a_@collapse" value="@item.ID">
+                                        @item.Ten
+                                    </a>
+                                </h4>
+                            </div>
+                            <!--Lưu ý: có gài css class show-->
+                            <div id="@collapse" class="panel-collapse collapse" role="tabpanel"
+                                 aria-labelledby="@heading">
+                                <div class="panel-body">
+                                    <ul id="ul_@collapse">
+                                        @foreach (Loai itemL in item.Loais)
+                                        {
+                                            <li><a href="#">@itemL.Ten</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @*Lọc sản phẩm theo giá*@
+        <div class="sidebar-box-2">
+            <h2 class="heading">Price Range</h2>
+            <form method="post" class="colorlib-form-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="guests">Price from:</label>
+                            <div class="form-field">
+                                <i class="icon icon-arrow-down3"></i>
+                                <select name="people" id="people" class="form-control">
+                                    <option value="#">1</option>
+                                    <option value="#">200</option>
+                                    <option value="#">300</option>
+                                    <option value="#">400</option>
+                                    <option value="#">1000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="guests">Price to:</label>
+                            <div class="form-field">
+                                <i class="icon icon-arrow-down3"></i>
+                                <select name="people" id="people" class="form-control">
+                                    <option value="#">2000</option>
+                                    <option value="#">4000</option>
+                                    <option value="#">6000</option>
+                                    <option value="#">8000</option>
+                                    <option value="#">10000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

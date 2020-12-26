@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HoaDon>
+@foreach (var item in Model)
+{
+    <tr style="border:0.2em solid black" id="hoadon-@item.ID">
+
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => item.HoTenKhach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => item.DienThoai)
+        </td>
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => item.TongTien)
+        </td>
+        <td style="border:2px solid black">
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td style="border:2px solid black">
+            <a class="btn btn-primary"
+               name="LoadPopUp"
+               id="/HoaDons/Details/@item.ID">
+                Chi tiết
+            </a>
+            @if (item.TrangThai != "Hoàn thành")
+            {
+                <a class="btn btn-warning"
+                   name="LoadPopUp"
+                   id="/HoaDons/Edit/@item.ID">
+                    Kiểm duyệt
+                </a>
+                <a class="btn btn-danger"
+                   name="LoadPopUp"
+                   id="/HoaDons/Delete/@item.ID">
+                    Delete/Spam
+                </a>
+            }
+
+        </td>
+    </tr>
+}

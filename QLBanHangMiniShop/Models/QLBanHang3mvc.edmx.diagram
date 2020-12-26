@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6cca12553ca04fc886043e8673ea0451" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.ChungLoai" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.HangHoa" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.HoaDon" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.HoaDonChiTiet" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.Loai" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="QLBanHangMiniShop.Models.FK_Loai_ChungLoai" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanHangMiniShop.Models.FK_HangHoa_Loai" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanHangMiniShop.Models.FK_HoaDonChiTiet_HangHoa" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanHangMiniShop.Models.FK_HoaDonChiTiet_HoaDon" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.AspNetRole" Width="1.5" PointX="7.75" PointY="9.5" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="10.625" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="8" />
+        <EntityTypeShape EntityType="QLBanHangMiniShop.Models.AspNetUser" Width="1.5" PointX="10" PointY="8.125" />
+        <AssociationConnector Association="QLBanHangMiniShop.Models.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="QLBanHangMiniShop.Models.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="QLBanHangMiniShop.Models.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,91 @@
+﻿@model QLBanHangMiniShop.Models.Loai
+
+@{
+
+    string actionNameListPage = @"../Loais/ListPagePost";
+}
+
+
+
+<div class="card card-primary">
+    <div class="card-header" style="background-color:#0094ff">
+        <h2 class="card-title">@ViewBag.Title</h2>
+        <div style="float:right">
+            <button class="closePopUp btn btn-danger"
+                    style="color:white"
+                    onclick="ClosePopUp()">
+                X
+            </button>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+
+        @using (Ajax.BeginForm("Create", new AjaxOptions
+        {
+            HttpMethod = "Post",
+            //UpdateTargetId = "tableBody",
+            //InsertionMode=InsertionMode.InsertAfter,
+            OnSuccess = $"Success(data,'{actionNameListPage}')"
+
+        }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Loai</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MaSo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MaSo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MaSo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ChungLoaiID, "ChungLoaiID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ChungLoaiID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ChungLoaiID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

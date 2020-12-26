@@ -1,0 +1,208 @@
+﻿@model QLBanHangMiniShop.Models.HangHoa
+
+@{
+
+    string actionNameListPage = @"../SanPhams/ListPagePost";
+}
+<script src="~/Scripts/SanPham_Create.js"></script>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 9 auto auto;
+        grid-gap: 0px   ;
+        background-color: #2196F3;
+        padding: 10px;
+    }
+
+      .item{
+            text-align: center;
+            padding: 20px 0;
+            font-size: 30px;
+        }
+      .item:hover
+      {
+          cursor:pointer;
+      }
+</style>
+
+
+<div class="card card-primary">
+    <div class="card-header" style="background-color:#0094ff">
+        <h2 class="card-title">@ViewBag.Title</h2>
+        <div style="float:right">
+            <button class="closePopUp btn btn-danger"
+                    style="color:white"
+                    onclick="ClosePopUp()">
+                X
+            </button>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <ul class="nav nav-tabs" style="margin-bottom:10px">
+            <li style="margin:0px"><a class="btn btn-outline-dark active" data-toggle="tab" href="#main_">Thông tin sản phẩm</a></li>
+            <li style="margin:0px"><a data-toggle="tab" class="btn btn-outline-dark" href="#menu1">Hình ảnh</a></li style="margin:0px>
+            <li style="margin:0px"><a data-toggle="tab" class="btn btn-outline-dark" href="#menu2">Thông số kỹ thuật</a></li>
+            <li style="margin:0px"><a data-toggle="tab" class="btn btn-outline-dark" href="#menu3">Mô tả</a></li>
+        </ul>
+        @using (Ajax.BeginForm("Create", new { }, new AjaxOptions
+        {
+            HttpMethod = "Post",
+            //UpdateTargetId = "tableBody",
+            //InsertionMode=InsertionMode.InsertAfter,
+            OnSuccess = $"Success(data,'{actionNameListPage}')"
+        }, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="tab-content">
+                <div id="main_" class="tab-pane fade active show" style="color:black !important;margin-top:5px">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaSo, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MaSo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaSo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DonViTinh, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DonViTinh, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DonViTinh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GiaBan, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LoaiID, "LoaiID", htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.DropDownList("LoaiID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LoaiID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div id="menu1" class="tab-pane fade " style="color:black !important">
+                    <div class="form-group">
+                        <label for="exampleInputFile">Hình ảnh sản phẩm</label>
+                        <div class="input-group" id="ImgControl">
+
+                            <div class="col-3" style=" max-height:175px;max-width:175px">
+                                <label class="grid-container" style="border:1px solid black;font-size:30px" for="file1" id="image_1">                                  
+                                    <i class="item"></i>
+                                    <i class="fas fa-plus item"></i>
+                                    <i class="item"></i>
+                                </label>
+                            </div>
+
+
+
+
+
+
+
+                            @*<div class="col-3" style=" max-height:175px;max-width:175px">
+                <label class="grid-container" style="border:1px solid black;font-size:30px" for="file1" id="image_1">
+                    <i class="item"></i>
+                    <i class="fas fa-plus item"></i>
+                    <i class="item"></i>
+                </label>
+            </div>
+            <input type="file" accept="image/*" class="custom-file-input" id="file1" name="file" multiple="multiple" style="display:none">
+            <div class="col-3" style=" max-height:175px;max-width:175px">
+                <label class="grid-container" style="border:1px solid black;font-size:30px" for="file2" id="image_1">
+                    <i class="item"></i>
+                    <i class="fas fa-plus item"></i>
+                    <i class="item"></i>
+                </label>
+            </div>
+            <input type="file" accept="image/*" class="custom-file-input" id="file2" name="file" multiple="multiple" style="display:none">*@
+
+                        </div>
+                        <input type="file" accept="image/*" class="custom-file-input" id="file1" name="file"  style="display:none" onchange="ChangeIMG(1)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file2" name="file"  style="display:none" onchange="ChangeIMG(2)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file3" name="file"  style="display:none" onchange="ChangeIMG(3)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file4" name="file"  style="display:none" onchange="ChangeIMG(4)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file5" name="file"  style="display:none" onchange="ChangeIMG(5)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file6" name="file"  style="display:none" onchange="ChangeIMG(6)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file7" name="file"  style="display:none" onchange="ChangeIMG(7)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file8" name="file"  style="display:none" onchange="ChangeIMG(8)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file9" name="file"  style="display:none" onchange="ChangeIMG(9)">
+                        <input type="file" accept="image/*" class="custom-file-input" id="file10" name="file"  style="display:none" onchange="ChangeIMG(10)">
+
+                    </div>
+                </div>
+                <div id="menu2" class="tab-pane fade" style="color:black !important">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ThongSoKyThuat, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.ThongSoKyThuat, new
+                            {
+                                @class = "form-control",
+                                cols = "100",
+                                @rows = "5"
+                           ,
+                                placeholder = @"-
+-
+-
+-
+"
+                            })
+                            @Html.ValidationMessageFor(model => model.ThongSoKyThuat, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div id="menu3" class="tab-pane fade" style="color:black !important">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.MoTa, new
+                            {
+                                @class = "form-control",
+                                cols = "100",
+                                @rows = "5"
+                                                      ,
+                                placeholder = @"Mô tả sản phẩm ngắn gọn"
+                            })                            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/SanPham_Create.js"></script>
+
+
+

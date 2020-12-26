@@ -1,0 +1,40 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout/AdminLayout_.cshtml";
+}
+
+<h2>Danh sách loại sản phẩm</h2>
+
+
+<p class="d-print-none">
+    <button class="btn btn-success"
+            id="/Loais/Create"
+            name="LoadPopUp">
+        +Thêm mới
+    </button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã số
+        </th>
+        <th>
+            Tên
+        </th>
+        <th>
+            Chủng Loại
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="tableBody">
+        @Html.Action("DanhSachLoai")
+    </tbody>
+</table>
+<div id="DivListPage">
+    @Html.Action("ListPage");
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
